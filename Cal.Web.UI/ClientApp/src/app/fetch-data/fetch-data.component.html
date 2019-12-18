@@ -1,0 +1,61 @@
+<h1 id="tableLabel">Card holders fetcher</h1>
+
+<p *ngIf="!items"><em>Loading...</em></p>
+
+<div style="float: left; width: 45%;">
+    <h4>Card-Holders:</h4>
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="cardHolders">
+    <thead>
+      <tr>
+        <th scope="col">Row</th>
+        <th scope="col">Date</th>
+        <th scope="col"> Id </th>
+        <th scope="col">Approved</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cardHolders; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ item.dateStamp | date }}</td>
+        <td>{{ item.id }}</td>
+        <td>{{ item.state.isSorryOn }}
+          <label class="switch">
+            <input type="checkbox" 
+              [checked]="item.state.isSorryOn" 
+              (change)="setState(item);">
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div style="float: right;  width: 45%;">
+  <h4>Cal4U:</h4>
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="cal4U">
+    <thead>
+      <tr>
+        <th scope="col">Row</th>
+        <th scope="col">Date</th>
+        <th scope="col"> Id </th>
+        <th scope="col">Approved</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cal4U; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ item.dateStamp | date }}</td>
+        <td>{{ item.id }}</td>
+        <td>{{ item.state.isSorryOn }}
+          <label class="switch">
+            <input type="checkbox" 
+            [checked]="item.state.isSorryOn" 
+            (change)="setState(item);">>
+            <span class="slider round"></span>
+          </label>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

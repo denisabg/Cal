@@ -12,8 +12,8 @@ namespace Cal.Core.Abstraction
 
     public class BookmarkContext
     {
-        public Guid Id { get; set; }
-        public State Status { get; set; }
+        public Guid Id { get; }
+        public State Status { get; }
 
         public BookmarkContext(StatusState item)
         {

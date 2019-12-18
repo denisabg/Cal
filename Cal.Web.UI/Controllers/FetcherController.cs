@@ -17,7 +17,7 @@ namespace Cal.Web.UI.Controllers
 
 
         public FetcherController(
-            ILogger<FetcherController> logger, 
+            ILogger<FetcherController> logger,
             IBookmarkService bookmarkService)
         {
             _logger = logger;
@@ -35,18 +35,19 @@ namespace Cal.Web.UI.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e,e.Message);
+                _logger.LogError(e, e.Message);
                 throw;
             }
-            
+
         }
 
         [HttpPut]
-        public async Task SetStateAsync(Guid id, [FromBody] State state)
+        public async Task<StatusState> SetStateAsync(Guid id, [FromBody] State state)
         {
             try
             {
-                await _bookmarkService.UpdateAsync(
+                return
+                    await _bookmarkService.UpdateAsync(
                     new BookmarkContext(
                         new StatusState
                         {
@@ -57,7 +58,8 @@ namespace Cal.Web.UI.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e,e.Message);
+                _logger.LogError(e, e.Message);
+                throw;
             }
         }
     }
